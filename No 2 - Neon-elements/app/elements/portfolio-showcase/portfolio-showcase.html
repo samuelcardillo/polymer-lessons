@@ -1,0 +1,150 @@
+<dom-module id="portfolio-showcase">
+  <style type="text/css">
+    paper-toolbar {
+      height: 100%;
+      background: url('../../images/cover_image.jpg');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      position: relative;
+      z-index: 1;
+    }
+
+    #productCard {
+      border-radius: 4px 4px 4px 4px;
+      margin: -40% auto auto auto;
+      width: 60%;
+      background-color: white;
+      min-height: 541px;
+      z-index: 2;
+    }
+
+    #productCard paper-fab {
+      position: absolute;
+      right: 12px;
+      margin-top: -28px;
+    }
+
+    #productCard .title {
+      font-size: 2.5em;
+      font-weight: 300;
+      color: #555;
+    }
+
+    #productCard .author {
+      font-size: 1.8em;
+      font-weight: 300;
+      color: #444;
+    }
+
+    #productCard .description {
+      word-wrap: break-word;
+      font-size: 1.3em;
+      font-weight: 300;
+      color: #111;
+      margin: 1em;
+      margin-top: 3em;
+    }
+
+    @media (max-width: 890px) {
+      paper-toolbar {
+        height: 200px;
+        background-size: 100% 316%;
+        background-repeat: no-repeat;
+      }
+
+      #productCard {
+        margin: initial;
+        width: 100%;
+      }
+    }
+
+  </style>
+  <template>
+     <paper-header-panel main style="height: 100vh;" mode="scroll">
+      <!-- Main Toolbar -->
+      <paper-toolbar id="header">
+        
+      </paper-toolbar>
+
+      <!-- Main Content -->
+      <div id="mainContainer">
+        
+        <paper-material id="productCard">
+
+          <div class="horizontal layout">
+            <paper-fab on-click="_closeCard" icon="close"></paper-fab>
+            <img  width="192px" height="192px" src="{{product.launcher}}"/>
+            <div style="margin-left: 2em; margin-top: 2em;" class="vertical layout">
+            <span class="title">{{product.name}}</span>
+            <span class="author">Samuel Cardillo</span>
+            </div>
+          </div>
+          
+          <div class="description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida tristique condimentum. Quisque tempus eleifend sollicitudin. Nulla congue in erat et euismod. Nulla pellentesque leo id dui tempor lobortis. Phasellus sollicitudin ut massa eu dictum. Pellentesque viverra a diam a feugiat. Morbi non lorem et ex finibus elementum. Morbi pharetra risus eget quam pellentesque, sed laoreet purus malesuada. Aenean ut nibh quis lacus mollis euismod. Maecenas pellentesque magna vehicula convallis hendrerit. Sed maximus urna sed suscipit facilisis. Aenean posuere, ligula quis fermentum vulputate, quam nisi pulvinar felis, et sodales ligula augue sit amet nunc. Curabitur eget orci et tortor rhoncus consequat et id nunc.
+          </div>
+        </paper-material>
+
+      </div>
+    </paper-header-panel>
+  </template>
+</dom-module>
+
+<script type="text/javascript">
+  Polymer({
+    is: "portfolio-showcase",
+
+    behaviors: [
+      Polymer.NeonAnimationRunnerBehavior,
+      Polymer.NeonSharedElementAnimatableBehavior
+    ],
+
+    properties: {
+      product: {
+        observer: "_productChanged"
+      },
+
+      sharedElements: {
+        value: function(){
+          return {
+            'hero': this.$.productCard
+          }
+        }
+      },
+
+      // DEBUT : CONFIGURATIONS DES ANIMATIONS
+      animationConfig: {
+        value: function(){
+          return {
+            'entry': [{
+              name: 'hero-animation',
+              id: 'hero',
+              toPage: this
+            },{
+              name: 'fade-in-animation',
+              node: this
+            }],
+
+            'exit': [{
+              name: 'fade-out-animation',
+              node: this
+            },{
+              name: 'scale-down-animation',
+              node: this
+            }]
+          }
+        }
+      }
+      // FIN : CONFIGURATIONS DES ANIMATIONS
+    },
+    // FIN : PROPRIETES
+
+    _closeCard: function(){
+      this.fire("changePage","finished");
+    },
+
+    _productChanged: function(data){
+      this.$.header.style.backgroundImage = "url('" + data["header"] + "')";
+    }
+  })
+</script>

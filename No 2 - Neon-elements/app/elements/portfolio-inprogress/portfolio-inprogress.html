@@ -1,0 +1,112 @@
+<dom-module id="portfolio-inprogress">
+  <style type="text/css">
+    h1 {
+        color: #78909c;
+        font-size: 24px;
+        font-weight: 300;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        margin-left: 8px;
+    }
+
+    paper-card /deep/ img {
+      height: 143px;
+    }
+
+    @media (max-width: 601px) {
+      paper-card {
+        width: 100% !important;
+        margin-left: 0px;
+        margin-right: 0px;
+      }
+
+      #androidify {
+        height: 64%;
+      }
+    }
+  </style>
+
+  <template>
+    <template is="dom-repeat" items="{{productsList}}" on-dom-change="_repeatRender">
+      <paper-card
+        id="{{item.id}}"
+        class="paperCard"
+        on-click="_openCard"
+        img="{{item.header}}"
+        legend="{{item.name}}"
+        icon="chevron-right"
+        width="250">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut earum, quisquam in temporibus dolor facilis provident similique officiis velit blanditiis!
+      </paper-card>
+    </template>
+  </template>
+</dom-module>
+
+<script type="text/javascript">
+  Polymer({
+    is: "portfolio-inprogress",
+
+    behaviors: [
+      Polymer.NeonAnimationRunnerBehavior,
+      Polymer.NeonSharedElementAnimatableBehavior
+    ],
+
+    properties: {
+      // START ANIMATIONS
+      animationConfig: {
+        value: function(){
+          return {
+            'entry': [{
+              name: 'fade-in-animation',
+              node: this
+            },{
+              name: 'transform-animation',
+              transformFrom: 'translateX(-100vh)',
+              node: this
+            }],
+            'exit': [{
+              name: 'hero-animation',
+              id: 'hero',
+              fromPage: this
+            },{
+              name: 'fade-out-animation',
+              node: this
+            }]
+          }
+        }
+      }
+      // END ANIMATIONS
+    },
+
+    ready: function(){
+      this.productsList = [{
+        "id": 0,
+        "name": "Card 1 - Cat 1",
+        "header": "http://lorempixel.com/350/200",
+        "launcher": "../../images/ic_launcher.png"
+      }];
+    },
+
+    _repeatRender: function(){
+      this.paperCard = Polymer.dom(this.root).querySelectorAll("paper-card");
+      this.animationConfig["entry"].push({
+        name: "cascaded-animation",
+        animation: "transform-animation",
+        transformFrom: "translateY(100vh)",
+        nodes: this.paperCard
+      })
+    },
+
+    _openCard: function(event){
+      if(event.target.classList.contains('paper-fab')) {
+        this.fire("updateShowcase",this.productsList[event.model.__data__["item.id"]]);
+
+        this.sharedElements = {
+          'hero': event.target
+        }
+
+        this.fire("changePage","showcase");
+      }
+    }
+  })
+</script>
