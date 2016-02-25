@@ -128,7 +128,7 @@
     },
 
     _openCard: function(event){
-      this.fire("updateShowcase",this.productsList[event.model.__data__["item.id"]]);
+      this.fire("updateShowcase",this.productsList[event.model.item.id]);
 
       this.sharedElements = {
         'hero': event.target
