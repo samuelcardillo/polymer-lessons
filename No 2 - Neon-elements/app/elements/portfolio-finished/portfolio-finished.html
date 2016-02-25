@@ -2,7 +2,6 @@
   <style type="text/css">
     :host {
       display: block;
-      padding: 16px;
     }
 
     h1 {
@@ -15,7 +14,7 @@
     }
 
     paper-card {
-      margin-right: 16px;
+      margin: 8px 16px;
       width: 250px;
       --paper-card-header-color: white;
     }
@@ -60,10 +59,6 @@
             'entry': [{
               name: 'fade-in-animation',
               node: this
-            },{
-              name: 'transform-animation',
-              transformFrom: 'translateX(-100vh)',
-              node: this
             }],
             'exit': [{
               name: 'hero-animation',
@@ -90,6 +85,31 @@
         "name": "Card 2 - Cat 1",
         "header": "http://lorempixel.com/350/200",
         "launcher": "../../images/ic_launcher.png"
+      },{
+        "id": 1,
+        "name": "Card 2 - Cat 1",
+        "header": "http://lorempixel.com/350/200",
+        "launcher": "../../images/ic_launcher.png"
+      },{
+        "id": 1,
+        "name": "Card 2 - Cat 1",
+        "header": "http://lorempixel.com/350/200",
+        "launcher": "../../images/ic_launcher.png"
+      },{
+        "id": 1,
+        "name": "Card 2 - Cat 1",
+        "header": "http://lorempixel.com/350/200",
+        "launcher": "../../images/ic_launcher.png"
+      },{
+        "id": 1,
+        "name": "Card 2 - Cat 1",
+        "header": "http://lorempixel.com/350/200",
+        "launcher": "../../images/ic_launcher.png"
+      },{
+        "id": 1,
+        "name": "Card 2 - Cat 1",
+        "header": "http://lorempixel.com/350/200",
+        "launcher": "../../images/ic_launcher.png"
       }];
     },
 
@@ -99,7 +119,11 @@
         name: "cascaded-animation",
         animation: "transform-animation",
         transformFrom: "translateY(100vh)",
-        nodes: this.paperCard
+        nodes: this.paperCard,
+        timing: {
+          delay: 0,
+          duration: 1000
+        }
       })
     },
 

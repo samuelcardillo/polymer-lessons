@@ -4,7 +4,7 @@
       display: block;
       padding: 16px;
     }
-    
+
     h1 {
         color: #78909c;
         font-size: 24px;
@@ -59,10 +59,6 @@
             'entry': [{
               name: 'fade-in-animation',
               node: this
-            },{
-              name: 'transform-animation',
-              transformFrom: 'translateX(-100vh)',
-              node: this
             }],
             'exit': [{
               name: 'hero-animation',
@@ -93,7 +89,11 @@
         name: "cascaded-animation",
         animation: "transform-animation",
         transformFrom: "translateY(100vh)",
-        nodes: this.paperCard
+        nodes: this.paperCard,
+        timing: {
+          delay: 0,
+          duration: 1000
+        }
       })
     },
 

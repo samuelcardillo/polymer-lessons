@@ -1,27 +1,27 @@
 <dom-module id="portfolio-showcase">
   <style type="text/css">
-    paper-toolbar {
-      height: 100%;
-      background: url('../../images/cover_image.jpg');
+    :host{
+      display: block;
+    }
+    #mainContainer {
       background-size: 100% 100%;
       background-repeat: no-repeat;
-      position: relative;
-      z-index: 1;
+      @apply(--layout-vertical);
+      @apply(--layout-center-center);
     }
 
     #productCard {
-      border-radius: 4px 4px 4px 4px;
-      margin: -40% auto auto auto;
+      margin: 44px 0px;
       width: 60%;
       background-color: white;
       min-height: 541px;
       z-index: 2;
     }
 
-    #productCard paper-fab {
+    #productCard paper-icon-button {
       position: absolute;
-      right: 12px;
-      margin-top: -28px;
+      right: 16px;
+      margin-top: 16px;
     }
 
     #productCard .title {
@@ -45,13 +45,15 @@
       margin-top: 3em;
     }
 
-    @media (max-width: 890px) {
-      paper-toolbar {
-        height: 200px;
-        background-size: 100% 316%;
-        background-repeat: no-repeat;
-      }
+    .horizontal {
+      @apply(--layout-horizontal);
+    }
 
+    .vertical {
+      @apply(--layout-vertical);
+    }
+
+    @media (max-width: 890px) {
       #productCard {
         margin: initial;
         width: 100%;
@@ -60,21 +62,15 @@
 
   </style>
   <template>
-     <paper-header-panel main style="height: 100vh;" mode="scroll">
-      <!-- Main Toolbar -->
-      <paper-toolbar id="header">
-        
-      </paper-toolbar>
-
       <!-- Main Content -->
       <div id="mainContainer">
         
         <paper-material id="productCard">
 
-          <div class="horizontal layout">
-            <paper-fab on-click="_closeCard" icon="close"></paper-fab>
+          <div class="horizontal">
+            <paper-icon-button on-click="_closeCard" icon="close"></paper-icon-button>
             <img  width="192px" height="192px" src="{{product.launcher}}"/>
-            <div style="margin-left: 2em; margin-top: 2em;" class="vertical layout">
+            <div style="margin-left: 2em; margin-top: 2em;" class="vertical">
             <span class="title">{{product.name}}</span>
             <span class="author">Samuel Cardillo</span>
             </div>
@@ -86,7 +82,6 @@
         </paper-material>
 
       </div>
-    </paper-header-panel>
   </template>
 </dom-module>
 
@@ -144,7 +139,7 @@
     },
 
     _productChanged: function(data){
-      this.$.header.style.backgroundImage = "url('" + data["header"] + "')";
+      this.$.mainContainer.style.backgroundImage = "url('" + data["header"] + "')";
     }
   })
 </script>
