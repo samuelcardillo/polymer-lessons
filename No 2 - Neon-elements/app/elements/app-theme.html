@@ -5,6 +5,7 @@
 
 /* Application theme */
 :root {
+  --primary-color: #ffffff;
   --dark-primary-color: #303F9F;
   --default-primary-color:#5CCDDE;
   --light-primary-color: #C5CAE9;
@@ -44,26 +45,6 @@ paper-material {
   background: white;
 }
 
-#mainToolbar {
-  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),
-  0 2px 9px 1px rgba(0,0,0,.12),
-  0 4px 2px -2px rgba(0,0,0,.2);
-}
-
-paper-menu iron-icon {
-  margin-right: 33px;
-  opacity: 0.54;
-}
-
-.paper-menu > .iron-selected {
-  color: var(--default-primary-color);
-}
-
-#mainToolbar .bottom {
-  padding-bottom: 120px;
-  margin-left: 30px;
-}
-
 paper-tabs {
   @apply(--layout-self-end);
   @apply(--layout-flex);
@@ -73,76 +54,32 @@ paper-tabs {
   @apply(--layout-flex);
 }
 
-/* Breakpoints */
-
-/* Small */
-
-@media (max-width: 600px) {
-
-  paper-toolbar.has-shadow {
-    height: 56px;
-  }
-
-  .paper-font-display2 {
-    font-size: 30px;
-  }
-
-  .paper-font-display1 {
-    font-size: 12px;
-  }
-
-  paper-material {
-    --menu-container-display: none;
-    width: calc(97.33% - 32px);
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  #overlay {
-    min-width: 360px;
-  }
-
-  .bg {
-    background: white;
-  }
-
-  #mainToolbar .bottom {
-    margin-left: 50px;
-    padding-bottom: 24px;
-  }
-
-  #mainToolbar.has-shadow .bottom {
-    padding-bottom: 0px;
-  }
-
-  .appname {
-    font-size: 24px;
-    padding-bottom: 0px;
-  }
-}
-
-@media (min-width: 601px) {
-
-  paper-material {
-    width: calc(98% - 46px);
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-
-  #mainToolbar.has-shadow .bottom {
-      margin-left: 50px;
-      padding-bottom: 0;
-      padding-left: 0;
-      font-size: 24px;
-  }
-
-}
-
 .authorName {
   font-weight: 100;
   font-size: 39px;
   letter-spacing: 8px;
 }
+
+#indexToolbar {
+  background-repeat: no-repeat;
+  background-size: 100% 88%;
+}
+
+#indexToolbar.tall {
+  height: 400px;
+}
+
+#indexToolbar .bottom{
+  background-color: white;
+  color: black;
+}
+
+/* Breakpoints */
+
+/* Small */
+@media (max-width: 600px) {  }
+
+@media (min-width: 601px) {  }
 
 @media (max-width: 601px) {
 
@@ -161,21 +98,6 @@ paper-tabs {
 
 }
 
-
-#indexToolbar {
-  background-repeat: no-repeat;
-  background-size: 100% 88%;
-}
-
-#indexToolbar.tall {
-  height: 400px;
-}
-#indexToolbar /deep/ #bottomBar {
-  height: 48px;
-  background-color: white;
-  box-shadow: -3px 3px 12px -4px black;
-  color: black;
-}
 /* Material Design Adaptive Breakpoints */
 /*
   Below you'll find CSS media queries based on the breakpoint guidance

@@ -1,5 +1,10 @@
 <dom-module id="portfolio-finished">
   <style type="text/css">
+    :host {
+      display: block;
+      padding: 16px;
+    }
+
     h1 {
         color: #78909c;
         font-size: 24px;
@@ -9,8 +14,10 @@
         margin-left: 8px;
     }
 
-    paper-card /deep/ img {
-      height: 143px;
+    paper-card {
+      margin-right: 16px;
+      width: 250px;
+      --paper-card-header-color: white;
     }
 
     @media (max-width: 601px) {
@@ -19,24 +26,18 @@
         margin-left: 0px;
         margin-right: 0px;
       }
-
-      #androidify {
-        height: 64%;
-      }
     }
   </style>
 
   <template>
     <template is="dom-repeat" items="{{productsList}}" on-dom-change="_repeatRender">
-      <paper-card
-        id="{{item.id}}"
-        class="paperCard"
-        on-click="_openCard"
-        img="{{item.header}}"
-        legend="{{item.name}}"
-        icon="chevron-right"
-        width="250">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut earum, quisquam in temporibus dolor facilis provident similique officiis velit blanditiis!
+      <paper-card elevation="1" id="{{item.id}}" image="{{item.header}}" heading="{{item.name}}">
+        <div class="card-content">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut earum, quisquam in temporibus dolor facilis provident similique officiis velit blanditiis!
+        </div>
+        <div class="card-actions">
+          <paper-button on-tap="_openCard">Open</paper-button>
+        </div>
       </paper-card>
     </template>
   </template>
@@ -103,15 +104,13 @@
     },
 
     _openCard: function(event){
-      if(event.target.classList.contains('paper-fab')) {
-        this.fire("updateShowcase",this.productsList[event.model.__data__["item.id"]]);
+      this.fire("updateShowcase",this.productsList[event.model.__data__["item.id"]]);
 
-        this.sharedElements = {
-          'hero': event.target
-        }
-
-        this.fire("changePage","showcase");
+      this.sharedElements = {
+        'hero': event.target
       }
+
+      this.fire("changePage","showcase");
     }
 
   })
