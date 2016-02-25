@@ -55,18 +55,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- endreplace-->
 </head>
 
-<body unresolved class="fullbleed">
+<body unresolved>
   <template is="dom-bind" id="app">
-    <paper-header-panel mode="scroll">
+    <paper-header-panel mode="waterfall-tall">
       <!-- START THE TOOLBAR !-->
       <paper-toolbar id="indexToolbar" class="tall">
-        <div class="flex"></div>
+        <div class="space"></div>
 
         <div class="middle">
           <span class="authorName">Polymer Lessons #2</span>
         </div>
 
-        <div class="bottom self-end flex">
+        <div class="bottom">
           <paper-tabs attr-for-selected="data-route" selected="{{route}}">
             <paper-tab data-route="finished">Finished</paper-tab>
             <paper-tab data-route="inprogress">In progress</paper-tab>
@@ -74,32 +74,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
       </paper-toolbar>
       <!-- END THE TOOLBAR !-->
+      
+      <!-- START THE IRON-PAGES !-->
       <neon-animated-pages attr-for-selected="data-route" selected="{{route}}">
         <portfolio-finished data-route="finished"></portfolio-finished>
         <portfolio-inprogress data-route="inprogress"></portfolio-inprogress>
-
         <portfolio-showcase data-route="showcase"></portfolio-showcase>
       </neon-animated-pages>
-      <!-- START THE IRON-PAGES !-->
-      <div class="vertical layout">
-        
-      </div>
       <!-- END THE IRON-PAGES !-->
     </paper-header-panel>
-
-    <paper-toast id="caching-complete"
-                 duration="6000"
-                 text="Caching complete! This app will work offline.">
-    </paper-toast>
-
-    <platinum-sw-register auto-register
-                          clients-claim
-                          skip-waiting
-                          on-service-worker-installed="displayInstalledToast">
-      <platinum-sw-cache default-cache-strategy="networkFirst"
-                         precache-file="precache.json">
-      </platinum-sw-cache>
-    </platinum-sw-register>
 
   </template>
 
